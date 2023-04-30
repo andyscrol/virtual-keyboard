@@ -107,11 +107,53 @@ window.onload = () => {
       const keyElement = document.createElement('button');
       keyElement.classList.add('key');
 
-      if (key.id === 'Backspace') {
-        keyElement.classList.add('backspace');
-      }
-      if (key.id === 'Tab') {
-        keyElement.classList.add('tab');
+      switch (key.id) {
+        case 'Backspace':
+          keyElement.classList.add('backspace', 'fn-key');
+          break;
+        case 'Tab':
+          keyElement.classList.add('tab', 'fn-key');
+          break;
+        case 'Delete':
+          keyElement.classList.add('del', 'fn-key');
+          break;
+        case 'CapsLock':
+          keyElement.classList.add('caps', 'fn-key');
+          break;
+        case 'Enter':
+          keyElement.classList.add('enter', 'fn-key');
+          break;
+        case 'ShiftLeft':
+          keyElement.classList.add('shift-left', 'fn-key');
+          break;
+        case 'ShiftRight':
+          keyElement.classList.add('shift-right', 'fn-key');
+          break;
+        case 'ControlLeft':
+          keyElement.classList.add('ctrl-left', 'fn-key');
+          break;
+        case 'MetaLeft':
+          keyElement.classList.add('meta', 'fn-key');
+          break;
+        case 'AltLeft':
+          keyElement.classList.add('alt-left', 'fn-key');
+          break;
+        case 'Space':
+          keyElement.classList.add('space', 'fn-key');
+          break;
+        case 'AltRight':
+          keyElement.classList.add('alt-right', 'fn-key');
+          break;
+        case 'ControlRight':
+          keyElement.classList.add('ctrl-right', 'fn-key');
+          break;
+        case 'ArrowUp':
+        case 'ArrowLeft':
+        case 'ArrowDown':
+        case 'ArrowRight':
+          keyElement.classList.add('fn-key');
+          break;
+        // no default
       }
 
       keyElement.innerText = key.en.text;
