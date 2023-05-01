@@ -181,6 +181,12 @@ window.onload = () => {
   wrapper.classList.add('wrapper');
   document.body.appendChild(wrapper);
 
+  // Add title
+  const title = document.createElement('h1');
+  title.innerText = 'RSS Virtual Keyboard';
+  title.classList.add('title');
+  wrapper.appendChild(title);
+
   // Create textarea
   const textarea = document.createElement('textarea');
   textarea.classList.add('textarea');
@@ -193,7 +199,7 @@ window.onload = () => {
   wrapper.appendChild(keyboard);
 
   // Add description
-  const description = document.createElement('h1');
+  const description = document.createElement('h2');
   description.innerText = 'Change language: Shift + Ctrl\nCreated on Windows OS';
   description.classList.add('description');
   wrapper.appendChild(description);
