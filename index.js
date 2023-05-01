@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 const keys = [
   [
     { id: 'Backquote', en: { text: '`', textShift: '~', textCaps: '`' }, ru: { text: 'ё', textShift: 'Ё', textCaps: 'Ё' } },
@@ -113,13 +114,18 @@ window.addEventListener('keyup', (event) => {
   }
 });
 
-window.addEventListener('keypress', (event) => {
-  const capsLockKeyElement = document.querySelector('button[id="CapsLock"]');
-  if (event.getModifierState('CapsLock') !== isCapsLockOn) {
-    isCapsLockOn = !isCapsLockOn;
-    capsLockKeyElement.classList.toggle('active');
+window.addEventListener('keydown', (event) => {
+  console.log(`Keydown event: ${event.code}`);
+  if (event.code === 'CapsLock') {
+    const capsLockKeyElement = document.querySelector('button[id="CapsLock"]');
+    if (event.getModifierState('CapsLock')) {
+      capsLockKeyElement.classList.add('active');
+      console.log('Added active class to Caps Lock key');
+    } else {
+      capsLockKeyElement.classList.remove('active');
+      console.log('Removed active class from Caps Lock key');
+    }
   }
-  console.log(event.getModifierState('CapsLock'));
 });
 
 // Language change
@@ -255,5 +261,18 @@ window.onload = () => {
       keyElement.innerText = key.en.text;
       rowElement.appendChild(keyElement);
     });
+  });
+
+  textarea.addEventListener('keydown', (event) => {
+    if (event.key === 'Tab') {
+      event.preventDefault();
+      const start = textarea.selectionStart;
+      const end = textarea.selectionEnd;
+      const textBefore = textarea.value.substring(0, start);
+      const textAfter = textarea.value.substring(end);
+      textarea.value = `${textBefore}\t${textAfter}`;
+      // eslint-disable-next-line no-multi-assign
+      textarea.selectionStart = textarea.selectionEnd = start + 1;
+    }
   });
 };
